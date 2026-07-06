@@ -1,0 +1,52 @@
+{
+  "about": {
+    "philosophy": "Precision-first design thinking — every fixture, gauge, and drawing exists to eliminate ambiguity on the shop floor. I believe that exceptional engineering is about clarity, compliance, and craftsmanship.",
+    "objective": "Grow into a senior/lead design role driving new tooling development and DFM strategy for automotive manufacturing. I'm passionate about mentoring junior engineers and building high-performing design teams.",
+    "background": "4+ years of experience in CAD-based product design, welding fixture and checking gauge development, and quality engineering across Tier 1 automotive manufacturing (Usaka Engineers, Jayem Auto Industries, Tenneco Automotive)."
+  },
+  "experience": [
+    {
+      "id": 1,
+      "title": "Design Engineer",
+      "company": "Usaka Engineers",
+      "period": "March 2025 – Present",
+      "location": "Faridabad, Haryana",
+      "achievements": [
+        "Developing 3D CAD models and 2D drawings in SolidWorks, AutoCAD, and CATIA V5 per client specs",
+        "Designing welding fixtures and checking gauges compliant with GD&T standards",
+        "Coordinating with tool room during fixture/gauge manufacturing and try-out",
+        "Resolving production and inspection issues via design changes",
+        "Maintaining design files, revision history, and BOMs for full traceability"
+      ],
+      "technologies": ["SolidWorks", "AutoCAD", "CATIA V5", "GD&T", "PPAP"]
+    },
+    {
+      "id": 2,
+      "title": "Design Engineer",
+      "company": "Jayem Auto Industries Pvt. Ltd.",
+      "period": "July 2022 – March 2025",
+      "location": "Faridabad, Haryana",
+      "achievements": [
+        "Designed pipeline and hose assembly components (SolidWorks, AutoCAD) to GD&T-compliant accuracy",
+        "Led new tooling development from concept to production",
+        "Created/updated 2D drawings and BOMs for new and revised product variants",
+        "Drove 5S, Kaizen, and quality improvement initiatives on the shop floor",
+        "Collaborated cross-functionally for design feasibility review and approval"
+      ],
+      "technologies": ["SolidWorks", "AutoCAD", "GD&T", "5S", "Kaizen"]
+    },
+    {
+      "id": 3,
+      "title": "Design Engineer Trainee",
+      "company": "Tenneco Automotive India Pvt. Ltd.",
+      "period": "July 2021 – July 2022",
+      "location": "Faridabad, Haryana",
+      "achievements": [
+        "Trained at a U.S.-based Tier 1 automotive supplier (Clean Air, Powertrain, DRIV divisions)",
+        "Used Vernier calipers, micrometers, and height gauges for dimensional inspection",
+        "Applied root cause analysis to reduce in-house failures and improve throughput"
+      ],
+      "technologies": ["Dimensional Inspection", "RCA", "Quality Control"]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Checking Gauge Development",
+  "category": "Gauge Design",
+  "industry": "Automotive Tier 1",
+  "software": [
+    "AutoCAD",
+    "CATIA V5"
+  ],
+  "difficulty": "Advanced",
+  "description": "Developed comprehensive checking gauge system for dimensional verification with full BOM and assembly documentation.",
+  "metrics": [
+    "12 weeks",
+    "5 revisions",
+    "100% accuracy"
+  ],
+  "modelFile": "2.IGS",
+  "image": "/models/2_img.png",
+  "objectives": [
+    "Design CMM holding fixture",
+    "Verify hole locations and surface profile",
+    "100% inspection capability"
+  ],
+  "requirements": [
+    "Anodized aluminum base",
+    "Go/No-Go pin integration",
+    "Dial indicator mounts"
+  ],
+  "constraints": [
+    "Tolerance ±0.01mm",
+    "Ergonomic lifting handles required"
+  ],
+  "solution": "Engineered a high-precision checking gauge with a robust aluminum base plate. Integrated custom Delrin rests to prevent part scratching and utilized precise go/no-go pins for instant hole verification on the assembly line.",
+  "challenges": [
+    "Stack-up tolerance in base assembly",
+    "Complex surface profile matching"
+  ],
+  "lessonsLearned": [
+    "Using standard gauge components reduces cost by 20%",
+    "CMM verification of the gauge itself is critical"
+  ],
+  "commands": [
+    "Surface Design",
+    "Generative Shape Design",
+    "BOM Generation"
+  ]
+}

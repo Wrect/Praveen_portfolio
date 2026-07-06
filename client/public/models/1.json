@@ -1,0 +1,47 @@
+{
+  "title": "Welding Fixture Assembly",
+  "category": "Welding Fixture Design",
+  "industry": "Automotive Tier 1",
+  "software": [
+    "CATIA V5",
+    "SolidWorks"
+  ],
+  "difficulty": "Advanced",
+  "description": "Designed precision welding fixture for automotive body panel assembly with GD&T compliance and manufacturing coordination.",
+  "metrics": [
+    "8 weeks",
+    "3 iterations",
+    "Zero defects"
+  ],
+  "modelFile": "1.IGS",
+  "image": "/models/1_img.png",
+  "objectives": [
+    "Design high-precision welding fixture for chassis",
+    "Achieve GD&T compliance under 0.1mm",
+    "Optimize for fast loading/unloading"
+  ],
+  "requirements": [
+    "Must integrate with robotic welding arm",
+    "Pneumatic clamping system required",
+    "Cycle time under 45 seconds"
+  ],
+  "constraints": [
+    "Space limited to 2m x 2m cell",
+    "Max weight 500kg"
+  ],
+  "solution": "Developed a modular welding fixture using CATIA V5. Engineered custom locating pins and integrated pneumatic toggle clamps to ensure repeatable positioning. The structural frame was optimized using FEA to prevent thermal distortion during the welding process.",
+  "challenges": [
+    "Thermal distortion of base plate",
+    "Clearance for robotic weld gun"
+  ],
+  "lessonsLearned": [
+    "Pre-heating base plates reduces warp",
+    "Optimized clamp sequencing saves 5s per cycle"
+  ],
+  "commands": [
+    "Part Design",
+    "Assembly Design",
+    "Kinematics",
+    "Drafting"
+  ]
+}

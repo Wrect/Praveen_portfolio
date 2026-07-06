@@ -1,0 +1,46 @@
+{
+  "title": "Pipeline Assembly Component",
+  "category": "Product Design",
+  "industry": "Automotive Tier 1",
+  "software": [
+    "SolidWorks",
+    "AutoCAD"
+  ],
+  "difficulty": "Intermediate",
+  "description": "Designed pipeline and hose assembly components to GD&T-compliant accuracy with parametric modeling.",
+  "metrics": [
+    "6 weeks",
+    "2 iterations",
+    "Production ready"
+  ],
+  "modelFile": "3.IGS",
+  "image": "/models/3_img.png",
+  "objectives": [
+    "Route hydraulic lines through tight engine bay",
+    "Ensure zero-interference with moving parts",
+    "Design parametric mounting brackets"
+  ],
+  "requirements": [
+    "Vibration damping mounts",
+    "Minimum bend radius compliance",
+    "High-pressure fittings"
+  ],
+  "constraints": [
+    "High temperature zone",
+    "Strict weight limits"
+  ],
+  "solution": "Designed complex 3D pipe routing using SolidWorks. Created custom parametric brackets that adapt to different engine configurations. Ran interference detection across all suspension travel states.",
+  "challenges": [
+    "Routing through dynamically changing clearances",
+    "Optimizing bend radii for manufacturing"
+  ],
+  "lessonsLearned": [
+    "Flexible hoses are better for high-vibration zones",
+    "Parametric brackets save hours on design revisions"
+  ],
+  "commands": [
+    "Tubing Design",
+    "Interference Check",
+    "Parametric Modeling"
+  ]
+}

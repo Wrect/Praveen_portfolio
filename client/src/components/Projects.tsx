@@ -1,0 +1,182 @@
+import { ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
+
+export interface ProjectData {
+  id: number;
+  title: string;
+  category: string;
+  industry: string;
+  software: string[];
+  difficulty: string;
+  description: string;
+  metrics: string[];
+  modelFile?: string;
+  image?: string;
+}
+
+export default function Projects() {
+  const [projects, setProjects] = useState<ProjectData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const loadedProjects: ProjectData[] = [];
+      let i = 1;
+      
+      // Sequentially load 1.json, 2.json until a 404 is returned
+      while (true) {
+        try {
+          const res = await fetch(`/models/${i}.json`);
+          if (!res.ok) break; // Stop loading if file doesn't exist
+
+          // Vite SPA fallback returns index.html for missing files, which causes JSON parse errors.
+          const contentType = res.headers.get("content-type");
+          if (contentType && contentType.includes("text/html")) {
+             console.log(`Stopped fetching at ${i}.json because HTML fallback was returned.`);
+             break;
+          }
+          
+          const data = await res.json();
+          loadedProjects.push({ ...data, id: i });
+          i++;
+        } catch (e) {
+          console.error(`Error loading project ${i}.json:`, e);
+          break;
+        }
+      }
+      
+      setProjects(loadedProjects);
+      setLoading(false);
+    };
+    
+    fetchProjects();
+  }, []);
+
+  return (
+    <section id="projects" className="py-20 md:py-32 bg-background">
+      <div className="container">
+        <div className="mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Featured Projects
+          </h2>
+          <div className="w-12 h-1 bg-[#C17A45] rounded-full" />
+          <p className="text-foreground/60 mt-4 max-w-2xl">
+            A selection of precision engineering projects dynamically loaded from JSON files. 
+            Store your .IGS models and corresponding .json files in the models folder.
+          </p>
+        </div>
+
+        {loading ? (
+          <div className="flex justify-center items-center h-48">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C17A45]"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project) => (
+              <a
+                href={`/case-study/${project.id}`}
+                key={project.id}
+                className="block group bg-card border border-border rounded-lg overflow-hidden hover:border-[#C17A45] hover:shadow-lg transition-all duration-300"
+              >
+                {/* Placeholder or Rendered Image */}
+                <div className="relative h-48 bg-gradient-to-br from-[#C17A45]/20 to-[#4A5A6A]/20 flex items-center justify-center overflow-hidden">
+                  {project.image ? (
+                    <img src={project.image} alt={project.title} className="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-110 transition-transform duration-500" />
+                  ) : (
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/40 to-transparent" />
+                  )}
+                  
+                  {!project.image && (
+                    <div className="text-center space-y-2 relative z-10">
+                      <div className="w-16 h-16 mx-auto bg-[#C17A45]/20 rounded-lg flex items-center justify-center border border-[#C17A45]/30 group-hover:border-[#C17A45] transition-colors">
+                        <svg
+                           className="w-8 h-8 text-[#C17A45]"
+                           fill="none"
+                           stroke="currentColor"
+                           viewBox="0 0 24 24"
+                        >
+                           <path
+                             strokeLinecap="round"
+                             strokeLinejoin="round"
+                             strokeWidth={1.5}
+                             d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2.75 1.5m0 0l-2.75-1.5m2.75 1.5v2.5M4 7l2.75 1.5m0 0L9.5 7m-2.75 1.5v2.5"
+                           />
+                        </svg>
+                      </div>
+                      <p className="text-xs text-foreground/60 font-medium">
+                        {project.modelFile ? `Model: ${project.modelFile}` : "CAD Model"}
+                      </p>
+                    </div>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="p-6 space-y-4">
+                  {/* Category Badge */}
+                  <div className="flex items-center justify-between">
+                    <span className="inline-block px-3 py-1 bg-[#C17A45]/10 text-[#C17A45] text-xs font-semibold rounded-full">
+                      {project.category}
+                    </span>
+                    <span className="text-xs font-medium text-foreground/50">
+                      {project.difficulty}
+                    </span>
+                  </div>
+
+                  {/* Title & Description */}
+                  <div>
+                    <h3 className="text-lg font-bold text-foreground mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-foreground/60 line-clamp-2">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Software Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.software?.map((soft) => (
+                      <span
+                        key={soft}
+                        className="px-2 py-1 bg-background border border-border rounded text-xs font-medium text-foreground/70"
+                      >
+                        {soft}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Metrics */}
+                  <div className="pt-4 border-t border-border">
+                    <div className="flex flex-wrap gap-3">
+                      {project.metrics?.map((metric) => (
+                        <span
+                          key={metric}
+                          className="text-xs font-semibold text-[#C17A45]"
+                        >
+                          {metric}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
+
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <p className="text-foreground/60 mb-6">
+            Have a similar fixture or tolerance challenge?
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 bg-[#C17A45] text-white font-semibold px-8 py-3 rounded-lg hover:bg-[#B5651D] transition-colors duration-200 shadow-md hover:shadow-lg"
+          >
+            Let's Talk
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
