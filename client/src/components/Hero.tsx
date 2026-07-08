@@ -104,7 +104,7 @@ export default function Hero() {
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  fetch('/resume.pdf')
+                  fetch(`${import.meta.env.BASE_URL}resume.pdf`)
                     .then(response => response.blob())
                     .then(blob => {
                       const url = window.URL.createObjectURL(blob);

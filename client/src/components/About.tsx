@@ -103,7 +103,7 @@ export default function About() {
                     <button
                       onClick={(e) => {
                         e.preventDefault();
-                        fetch('/certifications/catia_certification.pdf')
+                        fetch(`${import.meta.env.BASE_URL}certifications/catia_certification.pdf`)
                           .then(response => response.blob())
                           .then(blob => {
                             const url = window.URL.createObjectURL(blob);
@@ -130,7 +130,7 @@ export default function About() {
                     <button
                       onClick={(e) => {
                         e.preventDefault();
-                        fetch('/certifications/gdt_certification.pdf')
+                        fetch(`${import.meta.env.BASE_URL}certifications/gdt_certification.pdf`)
                           .then(response => response.blob())
                           .then(blob => {
                             const url = window.URL.createObjectURL(blob);
