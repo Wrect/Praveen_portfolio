@@ -51,7 +51,7 @@ export default function Experience() {
   const [expandedId, setExpandedId] = useState<number | null>(1);
 
   return (
-    <section id="experience" className="py-20 md:py-32 bg-background">
+    <section id="experience" className="py-20 md:py-32 relative z-10">
       <div className="container">
         <div className="mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">

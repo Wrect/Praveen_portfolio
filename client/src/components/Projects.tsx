@@ -54,7 +54,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section id="projects" className="py-20 md:py-32 bg-background">
+    <section id="projects" className="py-20 md:py-32 relative z-10">
       <div className="container">
         <div className="mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -77,12 +77,12 @@ export default function Projects() {
               <Link
                 href={`/case-study/${project.id}`}
                 key={project.id}
-                className="block group bg-card border border-border rounded-lg overflow-hidden hover:border-[#C17A45] hover:shadow-lg transition-all duration-300 min-w-[320px] md:min-w-[400px] flex-shrink-0 snap-start hide-scrollbar"
+                className="block group bg-card/90 backdrop-blur-md border border-border rounded-xl overflow-hidden hover:border-[#C17A45] hover:shadow-lg transition-all duration-300 min-w-[280px] md:min-w-[340px] max-w-[340px] flex-shrink-0 snap-start hide-scrollbar"
               >
                 {/* Placeholder or Rendered Image */}
-                <div className="relative h-48 bg-gradient-to-br from-[#C17A45]/20 to-[#4A5A6A]/20 flex items-center justify-center overflow-hidden">
+                <div className="relative h-72 bg-gradient-to-br from-[#C17A45]/5 to-[#4A5A6A]/10 flex items-center justify-center overflow-hidden border-b border-border/50">
                   {project.image ? (
-                    <img src={project.image.startsWith('/') ? `${import.meta.env.BASE_URL}${project.image.slice(1)}` : project.image} alt={project.title} className="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-110 transition-transform duration-500" />
+                    <img src={project.image.startsWith('/') ? `${import.meta.env.BASE_URL}${project.image.slice(1)}` : project.image} alt={project.title} className="w-full h-full object-contain p-4 drop-shadow-xl group-hover:scale-110 transition-transform duration-500" />
                   ) : (
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/40 to-transparent" />
                   )}
@@ -125,7 +125,7 @@ export default function Projects() {
 
                   {/* Title & Description */}
                   <div>
-                    <h3 className="text-lg font-bold text-foreground mb-2">
+                    <h3 className="text-lg font-bold text-foreground mb-2 line-clamp-1">
                       {project.title}
                     </h3>
                     <p className="text-sm text-foreground/60 line-clamp-2">
@@ -138,7 +138,7 @@ export default function Projects() {
                     {project.software?.map((soft) => (
                       <span
                         key={soft}
-                        className="px-2 py-1 bg-background border border-border rounded text-xs font-medium text-foreground/70"
+                        className="px-2 py-1 bg-muted border border-border rounded text-xs font-medium text-foreground/70"
                       >
                         {soft}
                       </span>

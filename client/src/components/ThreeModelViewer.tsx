@@ -144,16 +144,13 @@ export default function ThreeModelViewer({ modelUrl }: { modelUrl?: string }) {
 
       </div>
 
-      <Canvas shadows camera={{ position: [0, 0, 100], fov: 45 }}>
+      <Canvas shadows dpr={[1, 1.5]} performance={{ min: 0.5 }} camera={{ position: [0, 0, 100], fov: 45 }}>
         <color attach="background" args={["transparent"]} />
-        <Environment preset="studio" />
-        <ambientLight intensity={0.6} />
-        <spotLight position={[20, 20, 20]} angle={0.2} penumbra={1} intensity={1.5} castShadow />
         
         <CameraController zoomIn={triggerZoomIn} zoomOut={triggerZoomOut} />
 
         <Suspense fallback={null}>
-          <Stage environment="city" intensity={0.5} castShadow={false} adjustCamera>
+          <Stage environment="city" intensity={0.8} castShadow={false} adjustCamera>
             <STLModel url={url} rotationOffset={manualRotation} />
           </Stage>
         </Suspense>

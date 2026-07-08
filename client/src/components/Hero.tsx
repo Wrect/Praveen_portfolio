@@ -42,22 +42,6 @@ export default function Hero() {
       id="hero"
       className="min-h-screen flex items-center justify-center pt-16 pb-20 md:pt-20 md:pb-32 relative overflow-hidden"
     >
-      {/* Animated Background Image */}
-      <div 
-        className="absolute inset-0 animate-slow-pan z-0"
-        style={{
-          backgroundImage: `url('${import.meta.env.BASE_URL}manus-storage/hero-background_8c50bbdc.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-
-      {/* Adaptive Theme Overlay */}
-      <div className="absolute inset-0 bg-background/80 dark:bg-background/95 pointer-events-none z-0" />
-      
-      {/* Blueprint grid overlay */}
-      <div className="absolute inset-0 blueprint-grid opacity-30 dark:opacity-10 pointer-events-none z-0" />
-
       <div className="container relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start pt-4 md:pt-12">
           {/* Left: Text & CTAs */}

@@ -42,7 +42,7 @@ const itemVariants = {
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-32 bg-background">
+    <section id="about" className="py-20 md:py-32 relative z-10">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Left: Philosophy */}
