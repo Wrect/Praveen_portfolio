@@ -101,19 +101,21 @@ export default function Hero() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="#projects"
-                className="inline-flex items-center justify-center gap-2 bg-[#C17A45] text-white font-semibold px-8 py-4 rounded-lg hover:bg-[#B5651D] transition-colors duration-200 shadow-md hover:shadow-lg"
-              >
-                View Projects
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
                 href={`${import.meta.env.BASE_URL}resume.pdf`}
                 download="Praveen_Kashyap_Resume.pdf"
-                className="inline-flex items-center justify-center gap-2 border border-border text-foreground font-semibold px-8 py-4 rounded-lg hover:bg-card transition-colors duration-200 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 bg-[#C17A45] text-white font-bold px-8 py-4 rounded-lg hover:bg-[#B5651D] transition-colors duration-200 shadow-md hover:shadow-lg"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-5 h-5" />
                 Download Resume
+              </a>
+              <a
+                href="https://github.com/Wrect"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border-2 border-border text-foreground font-semibold px-8 py-4 rounded-lg hover:bg-card hover:border-[#C17A45]/50 transition-all duration-200 cursor-pointer"
+              >
+                View GitHub
+                <ArrowRight className="w-4 h-4" />
               </a>
             </div>
 

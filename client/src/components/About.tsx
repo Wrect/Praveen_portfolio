@@ -56,36 +56,11 @@ export default function About() {
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">
-                  Philosophy
+                <h3 className="text-lg font-semibold text-[#E0E0E0] mb-3">
+                  Executive Summary
                 </h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  Precision-first design thinking — every fixture, gauge, and drawing
-                  exists to eliminate ambiguity on the shop floor. I believe that
-                  exceptional engineering is about clarity, compliance, and craftsmanship.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">
-                  Objective
-                </h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  Grow into a senior/lead design role driving new tooling development
-                  and DFM strategy for automotive manufacturing. I'm passionate about
-                  mentoring junior engineers and building high-performing design teams.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-3">
-                  Background
-                </h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  4+ years of experience in CAD-based product design, welding fixture
-                  and checking gauge development, and quality engineering across Tier 1
-                  automotive manufacturing (Usaka Engineers, Jayem Auto Industries,
-                  Tenneco Automotive).
+                <p className="text-[#E0E0E0] leading-relaxed">
+                  I bridge the gap between traditional mechanical engineering and modern technological workflows by leveraging tools like vibe coding and AI alongside established manufacturing practices. With a strong foundation in precision CAD design and GD&T, I engineer high-tolerance fixtures and automotive components that eliminate shop-floor ambiguity. My goal is to build intelligent, highly-optimized physical systems that merge the reliability of classical engineering with the speed of digital innovation.
                 </p>
               </div>
 
