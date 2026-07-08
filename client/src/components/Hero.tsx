@@ -42,7 +42,7 @@ export default function Hero() {
       id="hero"
       className="min-h-screen flex items-center justify-center pt-16 pb-20 md:pt-20 md:pb-32 relative overflow-hidden"
       style={{
-        backgroundImage: "url('/manus-storage/hero-background_8c50bbdc.png')",
+        backgroundImage: `url('${import.meta.env.BASE_URL}manus-storage/hero-background_8c50bbdc.png')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
