@@ -3,12 +3,12 @@ import { OrbitControls, Stage, Environment } from "@react-three/drei";
 import { useRef, Suspense, useMemo, useState } from "react";
 import * as THREE from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader.js";
-import { Play, Pause, ZoomIn, ZoomOut, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Gauge } from "lucide-react";
+import { Play, Pause, ZoomIn, ZoomOut, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Gauge, Maximize, Hand } from "lucide-react";
 
 function STLModel({ url, rotationOffset }: { url: string, rotationOffset: {x: number, y: number} }) {
   const geom = useLoader(STLLoader, url);
   
-  // Center the geometry so it rotates around its own axis, not an imaginary distant origin
+  // Center the geometry so it rotates around its own axis
   const centeredGeom = useMemo(() => {
     geom.computeBoundingBox();
     geom.center();
@@ -43,9 +43,12 @@ function CameraController({ zoomIn, zoomOut }: { zoomIn: boolean, zoomOut: boole
 
 export default function ThreeModelViewer({ modelUrl }: { modelUrl?: string }) {
   const url = modelUrl || `${import.meta.env.BASE_URL}introduction_model/intro.STL`;
+  const containerRef = useRef<HTMLDivElement>(null);
   
-  const [isRotating, setIsRotating] = useState(true);
+  // Models stationary by default
+  const [isRotating, setIsRotating] = useState(false);
   const [speed, setSpeed] = useState(1.5);
+  const [panMode, setPanMode] = useState(false);
   const [manualRotation, setManualRotation] = useState({ x: 0, y: 0 });
   
   const [triggerZoomIn, setTriggerZoomIn] = useState(false);
@@ -61,30 +64,38 @@ export default function ThreeModelViewer({ modelUrl }: { modelUrl?: string }) {
     setTimeout(() => setTriggerZoomOut(false), 50);
   };
 
+  const handleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      containerRef.current?.requestFullscreen().catch(err => {
+        console.error("Error attempting to enable fullscreen:", err.message);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
   const rotateManual = (axis: 'x' | 'y', amount: number) => {
     setIsRotating(false);
     setManualRotation(prev => ({ ...prev, [axis]: prev[axis] + amount }));
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-background to-card rounded-lg overflow-hidden relative group" style={{ touchAction: 'none' }}>
+    <div ref={containerRef} className="w-full h-full bg-gradient-to-br from-background to-card rounded-lg overflow-hidden relative group" style={{ touchAction: 'none' }}>
       <div className="absolute top-4 left-4 z-10 bg-background/80 backdrop-blur-md px-3 py-1 rounded-full border border-border/50 text-xs font-semibold text-foreground/80 pointer-events-none shadow-sm">
         Interactive WebGL
       </div>
 
-      {/* Control Overlay */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-background/80 backdrop-blur-md p-2 rounded-xl border border-border/50 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      {/* Control Overlay - Always visible so user knows controls exist */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 bg-background/80 backdrop-blur-md p-2 rounded-xl border border-border/50 shadow-lg">
         
         {/* Play / Pause */}
         <button 
           onClick={() => setIsRotating(!isRotating)}
-          className="p-2 hover:bg-[#C17A45]/20 text-[#C17A45] rounded-lg transition-colors tooltip"
-          title={isRotating ? "Pause Rotation" : "Play Rotation"}
+          className={`p-2 rounded-lg transition-colors tooltip ${isRotating ? 'bg-[#C17A45]/20 text-[#C17A45]' : 'hover:bg-foreground/10 text-foreground/70'}`}
+          title={isRotating ? "Pause Auto-Rotation" : "Play Auto-Rotation"}
         >
           {isRotating ? <Pause size={18} /> : <Play size={18} />}
         </button>
-
-        <div className="w-px h-6 bg-border/50 mx-1" />
 
         {/* Speed Control */}
         <button 
@@ -96,6 +107,15 @@ export default function ThreeModelViewer({ modelUrl }: { modelUrl?: string }) {
         </button>
 
         <div className="w-px h-6 bg-border/50 mx-1" />
+
+        {/* Pan Mode */}
+        <button 
+          onClick={() => setPanMode(!panMode)}
+          className={`p-2 rounded-lg transition-colors tooltip ${panMode ? 'bg-[#C17A45]/20 text-[#C17A45]' : 'hover:bg-foreground/10 text-foreground/70'}`}
+          title={panMode ? "Pan Mode Active (Left Click)" : "Enable Pan Mode"}
+        >
+          <Hand size={18} />
+        </button>
 
         {/* Zoom Controls */}
         <button onClick={handleZoomOut} className="p-2 hover:bg-foreground/10 text-foreground/70 rounded-lg transition-colors" title="Zoom Out">
@@ -114,6 +134,13 @@ export default function ThreeModelViewer({ modelUrl }: { modelUrl?: string }) {
           <button onClick={() => rotateManual('y', 0.2)} className="p-1 hover:bg-foreground/10 text-foreground/70 rounded-lg transition-colors" title="Rotate Right"><ArrowRight size={16} /></button>
           <button onClick={() => rotateManual('x', 0.2)} className="p-1 hover:bg-foreground/10 text-foreground/70 rounded-lg transition-colors" title="Rotate Down"><ArrowDown size={16} /></button>
         </div>
+
+        <div className="w-px h-6 bg-border/50 mx-1" />
+
+        {/* Fullscreen */}
+        <button onClick={handleFullscreen} className="p-2 hover:bg-foreground/10 text-foreground/70 rounded-lg transition-colors" title="Fullscreen">
+          <Maximize size={18} />
+        </button>
 
       </div>
 
@@ -136,6 +163,11 @@ export default function ThreeModelViewer({ modelUrl }: { modelUrl?: string }) {
           enablePan={true}
           autoRotate={isRotating}
           autoRotateSpeed={speed}
+          mouseButtons={{
+            LEFT: panMode ? THREE.MOUSE.PAN : THREE.MOUSE.ROTATE,
+            MIDDLE: THREE.MOUSE.DOLLY,
+            RIGHT: panMode ? THREE.MOUSE.ROTATE : THREE.MOUSE.PAN
+          }}
           makeDefault
         />
       </Canvas>
