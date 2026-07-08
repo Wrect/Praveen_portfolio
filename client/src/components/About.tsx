@@ -4,10 +4,10 @@ export default function About() {
   return (
     <section id="about" className="py-20 md:py-32 relative z-10">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-start relative">
           
           {/* Left: Engineering Mission */}
-          <div className="space-y-10">
+          <div className="space-y-10 lg:sticky lg:top-32 self-start">
             <div>
               <h2 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase text-foreground mb-4">
                 Engineering <span className="text-[#C17A45]">Mission</span>

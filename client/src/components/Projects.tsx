@@ -77,7 +77,7 @@ export default function Projects() {
               <Link
                 href={`/case-study/${project.id}`}
                 key={project.id}
-                className="block group bg-card/90 backdrop-blur-md border border-border rounded-xl overflow-hidden hover:border-[#C17A45] hover:shadow-lg transition-all duration-300 min-w-[280px] md:min-w-[340px] max-w-[340px] flex-shrink-0 snap-start hide-scrollbar btn-press"
+                className="block group bg-card/90 backdrop-blur-md border border-border rounded-xl overflow-hidden hover:border-[#C17A45] hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 min-w-[280px] md:min-w-[340px] max-w-[340px] flex-shrink-0 snap-start hide-scrollbar btn-press"
               >
                 {/* Placeholder or Rendered Image */}
                 <div className="relative h-72 bg-gradient-to-br from-[#C17A45]/5 to-[#4A5A6A]/10 flex items-center justify-center overflow-hidden border-b border-border/50">

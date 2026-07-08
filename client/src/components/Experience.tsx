@@ -77,7 +77,7 @@ export default function Experience() {
               </div>
 
               {/* Card */}
-              <div className="md:ml-24 bg-card border border-border rounded-lg overflow-hidden hover:border-[#C17A45]/50 transition-all duration-200">
+              <div className="md:ml-24 bg-card border border-border rounded-lg overflow-hidden hover:border-[#C17A45]/50 hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300">
                 <button
                   onClick={() =>
                     setExpandedId(expandedId === exp.id ? null : exp.id)

@@ -8,18 +8,24 @@ import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import CommandPalette from "@/components/CommandPalette";
 import ScrollToTop from "@/components/ScrollToTop";
+import ScrollReveal from "@/components/ScrollReveal";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Home() {
+  const { scrollY } = useScroll();
+  const backgroundY = useTransform(scrollY, [0, 4000], [0, 400]);
+
   return (
     <div className="min-h-screen flex flex-col text-foreground relative">
       
-      {/* Global Animated Background Image */}
-      <div 
-        className="fixed inset-0 animate-slow-pan z-0 pointer-events-none"
+      {/* Global Parallax Background Image */}
+      <motion.div 
+        className="fixed -inset-[10%] animate-slow-pan z-0 pointer-events-none"
         style={{
           backgroundImage: `url('${import.meta.env.BASE_URL}manus-storage/hero-background_8c50bbdc.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          y: backgroundY
         }}
       />
       
@@ -38,11 +44,21 @@ export default function Home() {
         <Header />
         <main className="flex-1">
           <Hero />
-          <About />
-          <Projects />
-          <Experience />
-          <Software />
-          <Education />
+          <ScrollReveal>
+            <About />
+          </ScrollReveal>
+          <ScrollReveal>
+            <Projects />
+          </ScrollReveal>
+          <ScrollReveal>
+            <Experience />
+          </ScrollReveal>
+          <ScrollReveal>
+            <Software />
+          </ScrollReveal>
+          <ScrollReveal>
+            <Education />
+          </ScrollReveal>
           <div className="bg-background relative z-20">
             <Contact />
           </div>
