@@ -45,40 +45,16 @@ export default function Hero() {
           {/* Left Column */}
           <div className="flex-1 space-y-8 w-full">
             <div className="space-y-2 text-center lg:text-left">
-
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
                 Praveen Kashyap
               </h1>
-              <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#C17A45] tracking-tight pt-2 drop-shadow-sm">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#C17A45] tracking-tight pt-2 drop-shadow-sm">
                 Mechanical Design Engineer
               </h2>
             </div>
 
-            {/* Social Icons */}
-            <div className="flex gap-4 justify-center lg:justify-start pt-2">
-              <a href="#" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
-                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="https://github.com/Wrect" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
-                 <Github className="w-5 h-5" />
-              </a>
-              <a href="#contact" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
-                 <Mail className="w-5 h-5" />
-              </a>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
-              <a href="#contact" className="px-8 py-3 bg-[#C17A45] text-white font-bold rounded-md hover:bg-[#A56336] transition-colors shadow-lg">
-                Hire Me
-              </a>
-              <a href={`${import.meta.env.BASE_URL}resume.pdf`} download="Praveen_Kashyap_Resume.pdf" className="px-8 py-3 border border-border text-foreground font-bold rounded-md hover:bg-white/5 transition-colors">
-                Download CV
-              </a>
-            </div>
-
             {/* Stats Card */}
-            <div className="mt-12 bg-card/30 backdrop-blur-xl border border-border/30 rounded-2xl p-6 flex items-center justify-between max-w-xl mx-auto lg:mx-0 shadow-2xl">
+            <div className="mt-6 bg-card/30 backdrop-blur-xl border border-border/30 rounded-2xl p-6 flex items-center justify-between max-w-xl mx-auto lg:mx-0 shadow-xl">
               <div className="text-center px-2 sm:px-4">
                 <h3 className="text-2xl sm:text-3xl font-bold text-[#C17A45]">{displayStats.years}+</h3>
                 <p className="text-xs sm:text-sm text-foreground/60 mt-1 font-medium">Experiences</p>
@@ -92,6 +68,31 @@ export default function Hero() {
               <div className="text-center px-2 sm:px-4">
                 <h3 className="text-2xl sm:text-3xl font-bold text-[#C17A45]">{displayStats.companies}+</h3>
                 <p className="text-xs sm:text-sm text-foreground/60 mt-1 font-medium">Happy Clients</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 pt-4">
+              {/* Social Icons */}
+              <div className="flex gap-4 justify-center lg:justify-start">
+                <a href="#" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
+                   <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="https://github.com/Wrect" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
+                   <Github className="w-5 h-5" />
+                </a>
+                <a href="#contact" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
+                   <Mail className="w-5 h-5" />
+                </a>
+              </div>
+
+              {/* CTAs */}
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <a href="#contact" className="px-8 py-3 bg-[#C17A45] text-white font-bold rounded-md hover:bg-[#A56336] transition-colors shadow-lg">
+                  Hire Me
+                </a>
+                <a href={`${import.meta.env.BASE_URL}resume.pdf`} download="Praveen_Kashyap_Resume.pdf" className="px-8 py-3 border border-border text-foreground font-bold rounded-md hover:bg-white/5 transition-colors">
+                  Download CV
+                </a>
               </div>
             </div>
           </div>
