@@ -23,6 +23,7 @@ export default function Header() {
     { label: "About", href: "#about" },
     { label: "Experience", href: "#experience" },
     { label: "Projects", href: "#projects" },
+    { label: "Education", href: "#education" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -51,7 +52,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-12 lg:gap-16">
+        <nav className="hidden md:flex items-center gap-10 lg:gap-20">
           {navItems.map((item) => (
             <a
               key={item.label}
