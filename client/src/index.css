@@ -82,38 +82,38 @@
 }
 
 .dark {
-  /* Precision Dark Mode - Harsher Dark Blue */
+  /* Precision Light Dark Mode - Deep graphite with warm accents */
   --primary: #C17A45; /* Burnished Copper */
-  --primary-foreground: #F0EDE6; /* Warm cream */
+  --primary-foreground: #121212; /* Deep graphite */
   --sidebar-primary: #C17A45;
   --sidebar-primary-foreground: #F0EDE6;
-  --background: #060B19; /* Harsher deep blue */
+  --background: #121212; /* Deep graphite */
   --foreground: #F0EDE6; /* Warm cream */
-  --card: #0A1128; /* Deep navy blue */
+  --card: #1A1A1C; /* Charcoal */
   --card-foreground: #F0EDE6;
-  --popover: #0A1128;
+  --popover: #1A1A1C;
   --popover-foreground: #F0EDE6;
-  --secondary: #162445; /* Muted blue border */
+  --secondary: #2A2A2C;
   --secondary-foreground: #B8B5AF;
-  --muted: #162445;
+  --muted: #2A2A2C;
   --muted-foreground: #8B8885;
   --accent: #C17A45; /* Burnished Copper */
-  --accent-foreground: #060B19;
+  --accent-foreground: #121212;
   --destructive: #E8704A;
-  --destructive-foreground: #060B19;
-  --border: #162445;
-  --input: #162445;
+  --destructive-foreground: #121212;
+  --border: #2A2A2C;
+  --input: #2A2A2C;
   --ring: #C17A45;
   --chart-1: #C17A45;
   --chart-2: #7BA3B8;
   --chart-3: #A0704D;
   --chart-4: #D4A574;
   --chart-5: #8B7355;
-  --sidebar: #0A1128;
+  --sidebar: #1A1A1C;
   --sidebar-foreground: #F0EDE6;
   --sidebar-accent: #C17A45;
-  --sidebar-accent-foreground: #060B19;
-  --sidebar-border: #162445;
+  --sidebar-accent-foreground: #121212;
+  --sidebar-border: #2A2A2C;
   --sidebar-ring: #C17A45;
 }
 
@@ -146,15 +146,24 @@
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
   }
-  /* Precision Light: Fine 1px borders, soft shadows */
+  /* Precision Light: Fine 1px borders, dark blue drop shadows for boxes */
   .border {
     @apply border-[1px] border-[#D8D3C9];
   }
   .shadow-sm {
-    box-shadow: 0 1px 2px rgba(28, 28, 30, 0.05);
+    box-shadow: 0 2px 8px rgba(6, 11, 25, 0.1);
   }
   .shadow-md {
-    box-shadow: 0 4px 6px rgba(28, 28, 30, 0.07);
+    box-shadow: 0 4px 12px rgba(6, 11, 25, 0.12);
+  }
+  .shadow-lg {
+    box-shadow: 0 8px 24px rgba(6, 11, 25, 0.15);
+  }
+  .shadow-xl {
+    box-shadow: 0 12px 36px rgba(6, 11, 25, 0.18);
+  }
+  .shadow-2xl {
+    box-shadow: 0 24px 48px rgba(6, 11, 25, 0.25);
   }
 }
 
@@ -246,5 +255,43 @@
   }
   .animate-slow-pan {
     animation: slowPan 30s ease-in-out infinite;
+  }
+
+  /* Blueprint Light Rays */
+  @keyframes scan-y {
+    0% { top: -5%; opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { top: 105%; opacity: 0; }
+  }
+  @keyframes scan-x {
+    0% { left: -5%; opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { left: 105%; opacity: 0; }
+  }
+
+  .light-ray-h {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
+    box-shadow: 0 0 15px 2px var(--primary);
+    z-index: 5;
+    pointer-events: none;
+    animation: scan-y 12s ease-in-out infinite alternate;
+  }
+
+  .light-ray-v {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, var(--primary) 50%, transparent 100%);
+    box-shadow: 0 0 15px 2px var(--primary);
+    z-index: 5;
+    pointer-events: none;
+    animation: scan-x 15s ease-in-out infinite alternate;
   }
 }
