@@ -257,41 +257,43 @@
     animation: slowPan 30s ease-in-out infinite;
   }
 
-  /* Blueprint Light Rays */
-  @keyframes scan-y {
-    0% { top: -5%; opacity: 0; }
-    10% { opacity: 0.8; }
-    90% { opacity: 0.8; }
-    100% { top: 105%; opacity: 0; }
+  /* Blueprint Light Particles */
+  @keyframes particle-up {
+    0% { top: 110%; opacity: 0; }
+    5% { top: 110%; opacity: 1; }
+    45% { top: -20%; opacity: 1; }
+    50% { top: -20%; opacity: 0; }
+    100% { top: -20%; opacity: 0; }
   }
-  @keyframes scan-x {
-    0% { left: -5%; opacity: 0; }
-    10% { opacity: 0.8; }
-    90% { opacity: 0.8; }
-    100% { left: 105%; opacity: 0; }
-  }
-
-  .light-ray-h {
-    position: fixed;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--primary) 50%, transparent 100%);
-    box-shadow: 0 0 15px 2px var(--primary);
-    z-index: 5;
-    pointer-events: none;
-    animation: scan-y 12s ease-in-out infinite alternate;
+  @keyframes particle-left {
+    0% { left: 110%; opacity: 0; }
+    50% { left: 110%; opacity: 0; }
+    55% { left: 110%; opacity: 1; }
+    95% { left: -20%; opacity: 1; }
+    100% { left: -20%; opacity: 0; }
   }
 
-  .light-ray-v {
+  .particle-v {
     position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, transparent 0%, var(--primary) 50%, transparent 100%);
-    box-shadow: 0 0 15px 2px var(--primary);
+    width: 2px;
+    height: 200px;
+    background: linear-gradient(to top, transparent 0%, var(--primary) 80%, #ffffff 100%);
+    box-shadow: 0 0 15px 3px var(--primary);
     z-index: 5;
     pointer-events: none;
-    animation: scan-x 15s ease-in-out infinite alternate;
+    opacity: 0;
+    animation: particle-up 10s linear infinite;
+  }
+
+  .particle-h {
+    position: fixed;
+    height: 2px;
+    width: 200px;
+    background: linear-gradient(to left, transparent 0%, var(--primary) 80%, #ffffff 100%);
+    box-shadow: 0 0 15px 3px var(--primary);
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0;
+    animation: particle-left 10s linear infinite;
   }
 }
