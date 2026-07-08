@@ -45,9 +45,7 @@ export default function Hero() {
           {/* Left Column */}
           <div className="flex-1 space-y-8 w-full">
             <div className="space-y-2 text-center lg:text-left">
-              <p className="text-foreground/50 text-xl font-medium tracking-wide">
-                Hi I am
-              </p>
+
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
                 Praveen Kashyap
               </h1>
