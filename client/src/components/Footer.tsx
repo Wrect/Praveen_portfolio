@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <img
-                src="/manus-storage/logo_14583197.png"
+                src={`${import.meta.env.BASE_URL}manus-storage/logo_14583197.png`}
                 alt="Praveen Kashyap"
                 className="w-6 h-6"
               />

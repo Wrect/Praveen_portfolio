@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Link } from "wouter";
 
 export interface ProjectData {
   id: number;
@@ -61,8 +62,7 @@ export default function Projects() {
           </h2>
           <div className="w-12 h-1 bg-[#C17A45] rounded-full" />
           <p className="text-foreground/60 mt-4 max-w-2xl">
-            A selection of precision engineering projects dynamically loaded from JSON files. 
-            Store your .IGS models and corresponding .json files in the models folder.
+            A selection of precision engineering and mechanical design projects.
           </p>
         </div>
 
@@ -73,7 +73,7 @@ export default function Projects() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project) => (
-              <a
+              <Link
                 href={`/case-study/${project.id}`}
                 key={project.id}
                 className="block group bg-card border border-border rounded-lg overflow-hidden hover:border-[#C17A45] hover:shadow-lg transition-all duration-300"
@@ -81,7 +81,7 @@ export default function Projects() {
                 {/* Placeholder or Rendered Image */}
                 <div className="relative h-48 bg-gradient-to-br from-[#C17A45]/20 to-[#4A5A6A]/20 flex items-center justify-center overflow-hidden">
                   {project.image ? (
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-110 transition-transform duration-500" />
+                    <img src={project.image.startsWith('/') ? `${import.meta.env.BASE_URL}${project.image.slice(1)}` : project.image} alt={project.title} className="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-110 transition-transform duration-500" />
                   ) : (
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/40 to-transparent" />
                   )}
@@ -158,7 +158,7 @@ export default function Projects() {
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         )}

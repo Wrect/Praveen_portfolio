@@ -20,7 +20,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <img
-            src="/manus-storage/logo_14583197.png"
+            src={`${import.meta.env.BASE_URL}manus-storage/logo_14583197.png`}
             alt="Praveen Kashyap"
             className="w-8 h-8"
           />

@@ -158,7 +158,7 @@ export default function CaseStudy() {
             <div className="relative h-96 bg-gradient-to-br from-card to-background rounded-lg border border-border shadow-lg overflow-hidden flex items-center justify-center">
                 {caseStudy.image ? (
                   <img
-                    src={caseStudy.image}
+                    src={caseStudy.image.startsWith('/') ? `${import.meta.env.BASE_URL}${caseStudy.image.slice(1)}` : caseStudy.image}
                     alt={caseStudy.title}
                     className="w-full h-full object-cover mix-blend-multiply"
                   />
