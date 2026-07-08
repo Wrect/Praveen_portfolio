@@ -1,11 +1,23 @@
 import { useTheme } from "@/contexts/ThemeContext";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useState } from "react";
-import { Link } from "wouter";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    // Initialize
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { label: "About", href: "#about" },
@@ -15,19 +27,28 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/95 backdrop-blur-sm border-b border-border shadow-sm py-0' : 'bg-transparent border-transparent py-4'}`}>
       <div className="container flex items-center justify-between h-16">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-          <img
-            src={`${import.meta.env.BASE_URL}manus-storage/logo_14583197.png`}
-            alt="Praveen Kashyap"
-            className="w-8 h-8"
-          />
-          <span className="hidden sm:inline font-semibold text-foreground">
-            Praveen Kashyap
-          </span>
-        </Link>
+        {/* Logo (Hidden at top, appears on scroll) */}
+        <div className={`overflow-hidden transition-all duration-500 ease-in-out ${scrolled ? 'opacity-100 max-w-xs translate-y-0' : 'opacity-0 max-w-0 -translate-y-8 pointer-events-none'}`}>
+          <a 
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer whitespace-nowrap"
+          >
+            <img
+              src={`${import.meta.env.BASE_URL}manus-storage/logo_14583197.png`}
+              alt="Praveen Kashyap"
+              className="w-8 h-8"
+            />
+            <span className="hidden sm:inline font-semibold text-foreground">
+              Praveen Kashyap
+            </span>
+          </a>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">

@@ -60,23 +60,7 @@ export default function Software() {
                 </div>
               </div>
 
-              {/* Proficiency Bar */}
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-semibold text-foreground/60 uppercase tracking-wide">
-                    Proficiency
-                  </span>
-                  <span className="text-sm font-semibold text-[#C17A45]">
-                    {tool.proficiency}%
-                  </span>
-                </div>
-                <div className="w-full h-2 bg-border rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-[#C17A45] rounded-full transition-all duration-500"
-                    style={{ width: `${tool.proficiency}%` }}
-                  />
-                </div>
-              </div>
+
 
               {/* Skills */}
               <div className="space-y-3">
