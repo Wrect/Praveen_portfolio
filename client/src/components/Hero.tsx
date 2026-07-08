@@ -80,7 +80,7 @@ export default function Hero() {
                 <a href="https://github.com/Wrect" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all duration-300 shadow-sm hover-glow btn-press">
                    <Github className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
-                <a href="#contact" aria-label="Email" className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all duration-300 shadow-sm hover-glow btn-press">
+                <a href="mailto:sid143pk@gmail.com" aria-label="Email" className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all duration-300 shadow-sm hover-glow btn-press">
                    <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                 </a>
               </div>
