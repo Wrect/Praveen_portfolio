@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Heart } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 
@@ -77,7 +77,7 @@ export default function Projects() {
               <Link
                 href={`/case-study/${project.id}`}
                 key={project.id}
-                className="block group bg-card/90 backdrop-blur-md border border-border rounded-xl overflow-hidden hover:border-[#C17A45] hover:shadow-lg transition-all duration-300 min-w-[280px] md:min-w-[340px] max-w-[340px] flex-shrink-0 snap-start hide-scrollbar"
+                className="block group bg-card/90 backdrop-blur-md border border-border rounded-xl overflow-hidden hover:border-[#C17A45] hover:shadow-lg transition-all duration-300 min-w-[280px] md:min-w-[340px] max-w-[340px] flex-shrink-0 snap-start hide-scrollbar btn-press"
               >
                 {/* Placeholder or Rendered Image */}
                 <div className="relative h-72 bg-gradient-to-br from-[#C17A45]/5 to-[#4A5A6A]/10 flex items-center justify-center overflow-hidden border-b border-border/50">
@@ -113,14 +113,32 @@ export default function Projects() {
 
                 {/* Content */}
                 <div className="p-6 space-y-4">
-                  {/* Category Badge */}
+                  {/* Category Badge & Like Button */}
                   <div className="flex items-center justify-between">
                     <span className="inline-block px-3 py-1 bg-[#C17A45]/10 text-[#C17A45] text-xs font-semibold rounded-full">
                       {project.category}
                     </span>
-                    <span className="text-xs font-medium text-foreground/50">
-                      {project.difficulty}
-                    </span>
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-medium text-foreground/50">
+                        {project.difficulty}
+                      </span>
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          const target = e.currentTarget;
+                          target.classList.add('text-red-500', 'animate-heart-pop');
+                          target.querySelector('svg')?.setAttribute('fill', 'currentColor');
+                          setTimeout(() => {
+                            target.classList.remove('animate-heart-pop');
+                          }, 400);
+                        }}
+                        className="text-foreground/30 hover:text-red-500 transition-colors duration-200"
+                        title="Save to Wishlist"
+                      >
+                        <Heart className="w-5 h-5" />
+                      </button>
+                    </div>
                   </div>
 
                   {/* Title & Description */}
@@ -171,7 +189,7 @@ export default function Projects() {
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 bg-[#C17A45] text-white font-semibold px-8 py-3 rounded-lg hover:bg-[#B5651D] transition-colors duration-200 shadow-md hover:shadow-lg"
+            className="inline-flex items-center gap-2 bg-[#C17A45] text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 shadow-md hover-glow btn-press"
           >
             Let's Talk
             <ArrowUpRight className="w-4 h-4" />

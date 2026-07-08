@@ -74,23 +74,23 @@ export default function Hero() {
             <div className="flex flex-col gap-6 pt-4">
               {/* Social Icons */}
               <div className="flex gap-4 justify-center lg:justify-start">
-                <a href="#" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
+                <a href="#" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all duration-300 shadow-sm hover-glow btn-press">
                    <Linkedin className="w-5 h-5" />
                 </a>
-                <a href="https://github.com/Wrect" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
+                <a href="https://github.com/Wrect" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all duration-300 shadow-sm hover-glow btn-press">
                    <Github className="w-5 h-5" />
                 </a>
-                <a href="#contact" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
+                <a href="#contact" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all duration-300 shadow-sm hover-glow btn-press">
                    <Mail className="w-5 h-5" />
                 </a>
               </div>
 
               {/* CTAs */}
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                <a href="#contact" className="px-8 py-3 bg-[#C17A45] text-white font-bold rounded-md hover:bg-[#A56336] transition-colors shadow-lg">
+                <a href="#contact" className="px-8 py-3 bg-[#C17A45] text-white font-bold rounded-md transition-all duration-300 shadow-lg hover-glow btn-press">
                   Hire Me
                 </a>
-                <a href={`${import.meta.env.BASE_URL}resume.pdf`} download="Praveen_Kashyap_Resume.pdf" className="px-8 py-3 border border-border text-foreground font-bold rounded-md hover:bg-white/5 transition-colors">
+                <a href={`${import.meta.env.BASE_URL}resume.pdf`} download="Praveen_Kashyap_Resume.pdf" className="px-8 py-3 border border-border text-foreground font-bold rounded-md hover:bg-white/5 transition-all duration-300 btn-press">
                   Download CV
                 </a>
               </div>

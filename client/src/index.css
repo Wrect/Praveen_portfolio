@@ -247,6 +247,36 @@
     @apply text-[#C17A45] transition-colors duration-200;
   }
 
+  /* Micro-interactions: Press down effect */
+  .btn-press {
+    @apply active:scale-95 transition-transform duration-150;
+  }
+
+  /* Micro-interactions: Soft Hover Glow */
+  .hover-glow {
+    @apply hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(193,122,69,0.3)] transition-all duration-300;
+  }
+
+  /* Micro-interactions: Form Error Shake */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+  .animate-shake {
+    animation: shake 0.3s ease-in-out;
+  }
+
+  /* Micro-interactions: Heart Pop */
+  @keyframes heart-pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); }
+    100% { transform: scale(1); }
+  }
+  .animate-heart-pop {
+    animation: heart-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
   /* Slow subtle background animation */
   @keyframes slowPan {
     0% { transform: scale(1.0) translate(0, 0); }
