@@ -6,7 +6,6 @@ import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 import CommandPalette from "@/components/CommandPalette";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -41,16 +40,13 @@ export default function Home() {
           <Hero />
           <About />
           <Projects />
-          <Software />
           <Experience />
+          <Software />
           <Education />
           <div className="bg-background relative z-20">
             <Contact />
           </div>
         </main>
-        <div className="bg-background relative z-20">
-          <Footer />
-        </div>
       </div>
 
       <CommandPalette />

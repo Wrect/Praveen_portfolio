@@ -56,49 +56,14 @@ export default function About() {
 
             <div className="space-y-6">
               <div>
-                <h3 className="text-lg font-semibold text-[#E0E0E0] mb-3">
+                <h3 className="text-lg font-semibold text-foreground/90 mb-3">
                   Executive Summary
                 </h3>
-                <p className="text-[#E0E0E0] leading-relaxed">
+                <p className="text-foreground/90 leading-relaxed">
                   I bridge the gap between traditional mechanical engineering and modern technological workflows by leveraging tools like vibe coding and AI alongside established manufacturing practices. With a strong foundation in precision CAD design and GD&T, I engineer high-tolerance fixtures and automotive components that eliminate shop-floor ambiguity. My goal is to build intelligent, highly-optimized physical systems that merge the reliability of classical engineering with the speed of digital innovation.
                 </p>
               </div>
 
-              {/* Certifications */}
-              <div className="pt-4">
-                <h3 className="text-lg font-semibold text-foreground mb-4">
-                  Certifications & Training
-                </h3>
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between p-4 bg-card border border-border rounded-lg hover:border-[#C17A45]/50 transition-colors">
-                    <div>
-                      <p className="font-semibold text-foreground">CATIA V5 Advanced Design</p>
-                      <p className="text-sm text-foreground/60">Dassault Systèmes</p>
-                    </div>
-                    <a
-                      href={`${import.meta.env.BASE_URL}certifications/catia_certification.pdf`}
-                      download="CATIA_V5_Certification.pdf"
-                      className="px-4 py-2 text-xs font-semibold bg-[#C17A45]/10 text-[#C17A45] hover:bg-[#C17A45] hover:text-white rounded-md transition-colors cursor-pointer"
-                    >
-                      Download
-                    </a>
-                  </div>
-
-                  <div className="flex items-center justify-between p-4 bg-card border border-border rounded-lg hover:border-[#C17A45]/50 transition-colors">
-                    <div>
-                      <p className="font-semibold text-foreground">GD&T Master Certification</p>
-                      <p className="text-sm text-foreground/60">ASME Y14.5 Standard</p>
-                    </div>
-                    <a
-                      href={`${import.meta.env.BASE_URL}certifications/gdt_certification.pdf`}
-                      download="GDT_Certification.pdf"
-                      className="px-4 py-2 text-xs font-semibold bg-[#C17A45]/10 text-[#C17A45] hover:bg-[#C17A45] hover:text-white rounded-md transition-colors cursor-pointer"
-                    >
-                      Download
-                    </a>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 

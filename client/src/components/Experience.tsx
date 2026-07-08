@@ -92,7 +92,7 @@ export default function Experience() {
                       <p className="text-[#C17A45] font-semibold mt-1">
                         {exp.company}
                       </p>
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-2 text-sm text-[#E0E0E0] font-medium">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mt-2 text-sm text-foreground/90 font-medium">
                         <span>{exp.period}</span>
                         <span className="hidden sm:inline text-border">•</span>
                         <span>{exp.location}</span>
@@ -118,7 +118,7 @@ export default function Experience() {
                         {exp.achievements.map((achievement, i) => (
                           <li
                             key={i}
-                            className="flex gap-3 text-sm text-[#E0E0E0] font-medium"
+                            className="flex gap-3 text-sm text-foreground/90 font-medium"
                           >
                             <span className="text-[#C17A45] font-bold mt-0.5">
                               ✓
@@ -138,7 +138,7 @@ export default function Experience() {
                         {exp.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 bg-background border border-border rounded-full text-xs font-semibold text-[#E0E0E0]"
+                            className="px-3 py-1 bg-background border border-border rounded-full text-xs font-semibold text-foreground/90"
                           >
                             {tech}
                           </span>
