@@ -100,26 +100,13 @@ export default function About() {
                       <p className="font-semibold text-foreground">CATIA V5 Advanced Design</p>
                       <p className="text-sm text-foreground/60">Dassault Systèmes</p>
                     </div>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        fetch(`${import.meta.env.BASE_URL}certifications/catia_certification.pdf`)
-                          .then(response => response.blob())
-                          .then(blob => {
-                            const url = window.URL.createObjectURL(blob);
-                            const a = document.createElement('a');
-                            a.style.display = 'none';
-                            a.href = url;
-                            a.download = 'CATIA_V5_Certification.pdf';
-                            document.body.appendChild(a);
-                            a.click();
-                            window.URL.revokeObjectURL(url);
-                          });
-                      }}
+                    <a
+                      href={`${import.meta.env.BASE_URL}certifications/catia_certification.pdf`}
+                      download="CATIA_V5_Certification.pdf"
                       className="px-4 py-2 text-xs font-semibold bg-[#C17A45]/10 text-[#C17A45] hover:bg-[#C17A45] hover:text-white rounded-md transition-colors cursor-pointer"
                     >
                       Download
-                    </button>
+                    </a>
                   </div>
 
                   <div className="flex items-center justify-between p-4 bg-card border border-border rounded-lg hover:border-[#C17A45]/50 transition-colors">
@@ -127,26 +114,13 @@ export default function About() {
                       <p className="font-semibold text-foreground">GD&T Master Certification</p>
                       <p className="text-sm text-foreground/60">ASME Y14.5 Standard</p>
                     </div>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        fetch(`${import.meta.env.BASE_URL}certifications/gdt_certification.pdf`)
-                          .then(response => response.blob())
-                          .then(blob => {
-                            const url = window.URL.createObjectURL(blob);
-                            const a = document.createElement('a');
-                            a.style.display = 'none';
-                            a.href = url;
-                            a.download = 'GDT_Certification.pdf';
-                            document.body.appendChild(a);
-                            a.click();
-                            window.URL.revokeObjectURL(url);
-                          });
-                      }}
+                    <a
+                      href={`${import.meta.env.BASE_URL}certifications/gdt_certification.pdf`}
+                      download="GDT_Certification.pdf"
                       className="px-4 py-2 text-xs font-semibold bg-[#C17A45]/10 text-[#C17A45] hover:bg-[#C17A45] hover:text-white rounded-md transition-colors cursor-pointer"
                     >
                       Download
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

@@ -101,27 +101,14 @@ export default function Hero() {
                 View Projects
                 <ArrowRight className="w-4 h-4" />
               </a>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  fetch(`${import.meta.env.BASE_URL}resume.pdf`)
-                    .then(response => response.blob())
-                    .then(blob => {
-                      const url = window.URL.createObjectURL(blob);
-                      const a = document.createElement('a');
-                      a.style.display = 'none';
-                      a.href = url;
-                      a.download = 'Praveen_Kashyap_Resume.pdf';
-                      document.body.appendChild(a);
-                      a.click();
-                      window.URL.revokeObjectURL(url);
-                    });
-                }}
+              <a
+                href={`${import.meta.env.BASE_URL}resume.pdf`}
+                download="Praveen_Kashyap_Resume.pdf"
                 className="inline-flex items-center justify-center gap-2 border border-border text-foreground font-semibold px-8 py-4 rounded-lg hover:bg-card transition-colors duration-200 cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 Download Resume
-              </button>
+              </a>
             </div>
 
             {/* Tech Stack */}

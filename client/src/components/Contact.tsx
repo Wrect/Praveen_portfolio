@@ -78,22 +78,9 @@ export default function Contact() {
               Connect on LinkedIn
             </a>
             
-            <button 
-              onClick={(e) => {
-                e.preventDefault();
-                fetch(`${import.meta.env.BASE_URL}resume.pdf`)
-                  .then(response => response.blob())
-                  .then(blob => {
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.style.display = 'none';
-                    a.href = url;
-                    a.download = 'Praveen_Kashyap_Resume.pdf';
-                    document.body.appendChild(a);
-                    a.click();
-                    window.URL.revokeObjectURL(url);
-                  });
-              }}
+            <a 
+              href={`${import.meta.env.BASE_URL}resume.pdf`}
+              download="Praveen_Kashyap_Resume.pdf"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#C17A45] text-white font-semibold rounded-lg hover:bg-[#B5651D] transition-colors cursor-pointer"
             >
               <svg
@@ -110,7 +97,7 @@ export default function Contact() {
                 />
               </svg>
               Download Resume
-            </button>
+            </a>
           </div>
         </div>
       </div>
