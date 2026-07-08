@@ -1,8 +1,5 @@
-import { ArrowRight, Download } from "lucide-react";
-import { useEffect, useState, lazy, Suspense } from "react";
-
-// Lazy load the heavy 3D viewer to keep the initial page load blazing fast
-const ThreeModelViewer = lazy(() => import("@/components/ThreeModelViewer"));
+import { Linkedin, Github, Mail } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Hero() {
   const [displayStats, setDisplayStats] = useState({
@@ -40,112 +37,82 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center pt-16 pb-20 md:pt-20 md:pb-32 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center pt-20 pb-20 relative z-10"
     >
-      <div className="container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start pt-4 md:pt-12">
-          {/* Left: Text & CTAs */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="flex flex-row items-center gap-5 md:gap-6">
-                <div className="w-20 h-28 md:w-28 md:h-36 shrink-0 rounded-xl overflow-hidden border-2 border-[#C17A45]/30 shadow-xl relative">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none" />
-                  <img 
-                    src={`${import.meta.env.BASE_URL}profile.png`} 
-                    alt="Praveen Kashyap" 
-                    className="w-full h-full object-cover z-0 relative"
-                  />
-                </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-[1.1] tracking-tight">
-                  Praveen <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C17A45] to-[#E8A573]">Kashyap</span>
-                </h1>
-              </div>
-              <p className="text-xl text-foreground/70 font-light leading-relaxed max-w-lg border-l-2 border-[#C17A45]/50 pl-4 mt-6">
-                Engineering the future of automotive manufacturing through robust fixture design, 100% accurate GD&T modeling, and optimized production workflows.
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-16 lg:gap-12">
+          
+          {/* Left Column */}
+          <div className="flex-1 space-y-8 w-full">
+            <div className="space-y-2 text-center lg:text-left">
+              <p className="text-foreground/50 text-xl font-medium tracking-wide">
+                Hi I am
               </p>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+                Praveen Kashyap
+              </h1>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#C17A45] tracking-tight pt-2 drop-shadow-sm">
+                Mechanical Design Engineer
+              </h2>
             </div>
 
-            {/* Animated Stats */}
-            <div className="grid grid-cols-3 gap-6 py-8 border-y border-border">
-              <div className="text-center md:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-[#C17A45]">
-                  {displayStats.years}+
-                </div>
-                <p className="text-sm text-foreground/60 mt-1">Years Experience</p>
-              </div>
-              <div className="text-center md:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-[#C17A45]">
-                  {displayStats.companies}
-                </div>
-                <p className="text-sm text-foreground/60 mt-1">Tier 1 Companies</p>
-              </div>
-              <div className="text-center md:text-left">
-                <div className="text-3xl md:text-4xl font-bold text-[#C17A45]">
-                  {displayStats.projects}+
-                </div>
-                <p className="text-sm text-foreground/60 mt-1">Designs Delivered</p>
-              </div>
+            {/* Social Icons */}
+            <div className="flex gap-4 justify-center lg:justify-start pt-2">
+              <a href="#" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
+                 <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="https://github.com/Wrect" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
+                 <Github className="w-5 h-5" />
+              </a>
+              <a href="#contact" className="w-12 h-12 rounded-full border border-border flex items-center justify-center text-foreground/70 hover:bg-[#C17A45] hover:text-white hover:border-[#C17A45] transition-all shadow-sm">
+                 <Mail className="w-5 h-5" />
+              </a>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href={`${import.meta.env.BASE_URL}resume.pdf`}
-                download="Praveen_Kashyap_Resume.pdf"
-                className="inline-flex items-center justify-center gap-2 bg-[#C17A45] text-white font-bold px-8 py-4 rounded-lg hover:bg-[#B5651D] transition-colors duration-200 shadow-md hover:shadow-lg"
-              >
-                <Download className="w-5 h-5" />
-                Download Resume
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
+              <a href="#contact" className="px-8 py-3 bg-[#C17A45] text-white font-bold rounded-md hover:bg-[#A56336] transition-colors shadow-lg">
+                Hire Me
               </a>
-              <a
-                href="https://github.com/Wrect"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border-2 border-border text-foreground font-semibold px-8 py-4 rounded-lg hover:bg-card hover:border-[#C17A45]/50 transition-all duration-200 cursor-pointer"
-              >
-                View GitHub
-                <ArrowRight className="w-4 h-4" />
+              <a href={`${import.meta.env.BASE_URL}resume.pdf`} download="Praveen_Kashyap_Resume.pdf" className="px-8 py-3 border border-border text-foreground font-bold rounded-md hover:bg-white/5 transition-colors">
+                Download CV
               </a>
             </div>
 
-            {/* Tech Stack */}
-            <div className="space-y-4 pt-4">
-              <p className="text-xs font-bold text-foreground/50 uppercase tracking-[0.2em]">
-                Software Arsenal
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {[
-                  { name: "CATIA V5", icon: "📐" },
-                  { name: "SolidWorks", icon: "⚙️" },
-                  { name: "AutoCAD", icon: "📏" },
-                  { name: "GD&T", icon: "🎯" },
-                  { name: "PPAP", icon: "📊" }
-                ].map((tech) => (
-                  <div
-                    key={tech.name}
-                    className="flex items-center gap-2 px-4 py-2 bg-card/60 backdrop-blur-md border border-[#C17A45]/20 shadow-[0_4px_20px_rgba(193,122,69,0.05)] text-foreground text-sm font-bold rounded-lg hover:border-[#C17A45]/80 hover:bg-[#C17A45]/10 hover:-translate-y-1 transition-all duration-300"
-                  >
-                    <span className="text-lg drop-shadow-md">{tech.icon}</span>
-                    {tech.name}
-                  </div>
-                ))}
+            {/* Stats Card */}
+            <div className="mt-12 bg-card/30 backdrop-blur-xl border border-border/30 rounded-2xl p-6 flex items-center justify-between max-w-xl mx-auto lg:mx-0 shadow-2xl">
+              <div className="text-center px-2 sm:px-4">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#C17A45]">{displayStats.years}+</h3>
+                <p className="text-xs sm:text-sm text-foreground/60 mt-1 font-medium">Experiences</p>
+              </div>
+              <div className="w-px h-12 bg-border/50"></div>
+              <div className="text-center px-2 sm:px-4">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#C17A45]">{displayStats.projects}+</h3>
+                <p className="text-xs sm:text-sm text-foreground/60 mt-1 font-medium">Project done</p>
+              </div>
+              <div className="w-px h-12 bg-border/50"></div>
+              <div className="text-center px-2 sm:px-4">
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#C17A45]">{displayStats.companies}+</h3>
+                <p className="text-xs sm:text-sm text-foreground/60 mt-1 font-medium">Happy Clients</p>
               </div>
             </div>
           </div>
 
-          {/* Right: 3D CAD Viewer */}
-          <div className="hidden md:flex items-center justify-center h-[500px]">
-            <div className="w-full h-full rounded-2xl border border-border/50 shadow-2xl overflow-hidden relative group">
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#C17A45]/5 to-transparent pointer-events-none z-10" />
-              <Suspense fallback={
-                <div className="w-full h-full flex items-center justify-center bg-card">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C17A45]"></div>
-                </div>
-              }>
-                <ThreeModelViewer modelUrl={`${import.meta.env.BASE_URL}introduction_model/intro.STL`} />
-              </Suspense>
+          {/* Right Column: Profile Image */}
+          <div className="flex-1 flex justify-center lg:justify-end relative w-full max-w-md lg:max-w-none">
+            <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[450px] lg:h-[450px]">
+              {/* Dark circle background */}
+              <div className="absolute inset-0 bg-background rounded-full scale-110 -z-10 shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-border/20"></div>
+              
+              {/* Profile image cutout */}
+              <img 
+                src={`${import.meta.env.BASE_URL}profile.png`} 
+                alt="Praveen Kashyap" 
+                className="w-full h-full object-cover rounded-full drop-shadow-2xl grayscale-[50%] contrast-125 hover:grayscale-0 transition-all duration-700 object-top"
+              />
             </div>
           </div>
+
         </div>
       </div>
     </section>
