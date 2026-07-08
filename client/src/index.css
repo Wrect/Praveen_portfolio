@@ -82,38 +82,38 @@
 }
 
 .dark {
-  /* Precision Light Dark Mode - Deep graphite with warm accents */
+  /* Precision Dark Mode - Harsher Dark Blue */
   --primary: #C17A45; /* Burnished Copper */
-  --primary-foreground: #121212; /* Deep graphite */
+  --primary-foreground: #F0EDE6; /* Warm cream */
   --sidebar-primary: #C17A45;
   --sidebar-primary-foreground: #F0EDE6;
-  --background: #121212; /* Deep graphite */
+  --background: #060B19; /* Harsher deep blue */
   --foreground: #F0EDE6; /* Warm cream */
-  --card: #1A1A1C; /* Charcoal */
+  --card: #0A1128; /* Deep navy blue */
   --card-foreground: #F0EDE6;
-  --popover: #1A1A1C;
+  --popover: #0A1128;
   --popover-foreground: #F0EDE6;
-  --secondary: #2A2A2C;
+  --secondary: #162445; /* Muted blue border */
   --secondary-foreground: #B8B5AF;
-  --muted: #2A2A2C;
+  --muted: #162445;
   --muted-foreground: #8B8885;
   --accent: #C17A45; /* Burnished Copper */
-  --accent-foreground: #121212;
+  --accent-foreground: #060B19;
   --destructive: #E8704A;
-  --destructive-foreground: #121212;
-  --border: #2A2A2C;
-  --input: #2A2A2C;
+  --destructive-foreground: #060B19;
+  --border: #162445;
+  --input: #162445;
   --ring: #C17A45;
   --chart-1: #C17A45;
   --chart-2: #7BA3B8;
   --chart-3: #A0704D;
   --chart-4: #D4A574;
   --chart-5: #8B7355;
-  --sidebar: #1A1A1C;
+  --sidebar: #0A1128;
   --sidebar-foreground: #F0EDE6;
   --sidebar-accent: #C17A45;
-  --sidebar-accent-foreground: #121212;
-  --sidebar-border: #2A2A2C;
+  --sidebar-accent-foreground: #060B19;
+  --sidebar-border: #162445;
   --sidebar-ring: #C17A45;
 }
 
