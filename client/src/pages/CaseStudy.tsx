@@ -2,7 +2,10 @@ import { ArrowLeft, Download, Maximize2, RotateCcw, Zap } from "lucide-react";
 import { useLocation } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
+
+const ThreeModelViewer = lazy(() => import("@/components/ThreeModelViewer"));
+
 
 interface CaseStudyData {
   id: number;
@@ -156,7 +159,11 @@ export default function CaseStudy() {
         <section className="py-12 border-b border-border">
           <div className="container">
             <div className="relative h-96 bg-gradient-to-br from-card to-background rounded-lg border border-border shadow-lg overflow-hidden flex items-center justify-center">
-                {caseStudy.image ? (
+                {caseStudy.modelFile ? (
+                  <Suspense fallback={<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C17A45]"></div>}>
+                    <ThreeModelViewer modelUrl={`${import.meta.env.BASE_URL}models/${caseStudy.modelFile}`} />
+                  </Suspense>
+                ) : caseStudy.image ? (
                   <img
                     src={caseStudy.image.startsWith('/') ? `${import.meta.env.BASE_URL}${caseStudy.image.slice(1)}` : caseStudy.image}
                     alt={caseStudy.title}
@@ -180,7 +187,7 @@ export default function CaseStudy() {
                       </svg>
                     </div>
                     <p className="text-foreground/60 text-sm font-medium">
-                      {caseStudy.modelFile ? `Loaded Model: ${caseStudy.modelFile}` : "Interactive 3D CAD Viewer"}
+                      Interactive 3D CAD Viewer
                     </p>
                     <p className="text-foreground/40 text-xs">
                       Rotate • Zoom • Pan • Explode View
