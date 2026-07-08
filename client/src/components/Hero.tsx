@@ -54,12 +54,12 @@ export default function Hero() {
       <div className="absolute inset-0 blueprint-grid opacity-30 dark:opacity-10 pointer-events-none z-0" />
 
       <div className="container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start pt-4 md:pt-12">
           {/* Left: Text & CTAs */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <div className="flex flex-col items-start gap-4">
-                <div className="w-32 h-40 md:w-40 md:h-48 rounded-xl overflow-hidden border-2 border-[#C17A45]/30 shadow-2xl relative">
+              <div className="flex flex-row items-center gap-5 md:gap-6">
+                <div className="w-20 h-28 md:w-28 md:h-36 shrink-0 rounded-xl overflow-hidden border-2 border-[#C17A45]/30 shadow-xl relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none" />
                   <img 
                     src={`${import.meta.env.BASE_URL}profile.png`} 
@@ -67,9 +67,8 @@ export default function Hero() {
                     className="w-full h-full object-cover z-0 relative"
                   />
                 </div>
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight">
-                  Praveen <br className="hidden md:block"/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C17A45] to-[#E8A573]">Kashyap</span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground leading-[1.1] tracking-tight">
+                  Praveen <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C17A45] to-[#E8A573]">Kashyap</span>
                 </h1>
               </div>
               <p className="text-xl text-foreground/70 font-light leading-relaxed max-w-lg border-l-2 border-[#C17A45]/50 pl-4 mt-6">
