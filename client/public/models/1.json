@@ -43,5 +43,22 @@
     "Assembly Design",
     "Kinematics",
     "Drafting"
+  ],
+  "subparts": [
+    {
+      "id": "sub1",
+      "name": "Base Fixture Frame",
+      "modelFile": "1.STL"
+    },
+    {
+      "id": "sub2",
+      "name": "Pneumatic Clamping Unit",
+      "modelFile": "1.STL"
+    },
+    {
+      "id": "sub3",
+      "name": "Locating Pins Assembly",
+      "modelFile": "1.STL"
+    }
   ]
 }

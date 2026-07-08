@@ -1,11 +1,17 @@
-import { ArrowLeft, Download, Maximize2, RotateCcw, Zap } from "lucide-react";
+import { ArrowLeft, Download, Maximize2, RotateCcw, Zap, Layers, Box } from "lucide-react";
 import { useLocation } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useState, useEffect, lazy, Suspense } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ThreeModelViewer = lazy(() => import("@/components/ThreeModelViewer"));
 
+interface Subpart {
+  id: string;
+  name: string;
+  modelFile: string;
+}
 
 interface CaseStudyData {
   id: number;
@@ -24,6 +30,8 @@ interface CaseStudyData {
   lessonsLearned?: string[];
   commands?: string[];
   modelFile?: string;
+  image?: string;
+  subparts?: Subpart[];
 }
 
 export default function CaseStudy() {
@@ -32,6 +40,9 @@ export default function CaseStudy() {
   const [caseStudy, setCaseStudy] = useState<CaseStudyData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  
+  const [activeModel, setActiveModel] = useState<string | null>(null);
+  const [showSubparts, setShowSubparts] = useState(false);
 
   useEffect(() => {
     const fetchCaseStudy = async () => {
@@ -51,6 +62,7 @@ export default function CaseStudy() {
 
         const data = await res.json();
         setCaseStudy({ ...data, id: caseStudyId });
+        setActiveModel(data.modelFile || null);
       } catch (err) {
         console.error("Error loading case study JSON:", err);
         setError(true);
@@ -60,6 +72,14 @@ export default function CaseStudy() {
     };
     fetchCaseStudy();
   }, [caseStudyId]);
+
+  const handleToggleSubparts = () => {
+    if (showSubparts) {
+      // Revert to main model when closing subparts
+      setActiveModel(caseStudy?.modelFile || null);
+    }
+    setShowSubparts(!showSubparts);
+  };
 
   if (loading) {
     return (
@@ -155,200 +175,253 @@ export default function CaseStudy() {
           </div>
         </section>
 
-        {/* 3D CAD Viewer Placeholder */}
+        {/* Split Layout: 3D Viewer on Left, Details/Subparts on Right */}
         <section className="py-12 border-b border-border">
           <div className="container">
-            <div className="relative h-96 bg-gradient-to-br from-card to-background rounded-lg border border-border shadow-lg overflow-hidden flex items-center justify-center">
-                {caseStudy.modelFile ? (
-                  <Suspense fallback={<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C17A45]"></div>}>
-                    <ThreeModelViewer modelUrl={`${import.meta.env.BASE_URL}models/${caseStudy.modelFile}`} />
-                  </Suspense>
-                ) : caseStudy.image ? (
-                  <img
-                    src={caseStudy.image.startsWith('/') ? `${import.meta.env.BASE_URL}${caseStudy.image.slice(1)}` : caseStudy.image}
-                    alt={caseStudy.title}
-                    className="w-full h-full object-cover mix-blend-multiply"
-                  />
-                ) : (
-                  <div className="text-center space-y-4">
-                    <div className="w-24 h-24 mx-auto bg-[#C17A45]/10 rounded-lg flex items-center justify-center border border-[#C17A45]/20">
-                      <svg
-                        className="w-12 h-12 text-[#C17A45]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2.75 1.5m0 0l-2.75-1.5m2.75 1.5v2.5M4 7l2.75 1.5m0 0L9.5 7m-2.75 1.5v2.5"
-                        />
-                      </svg>
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
+              
+              {/* LEFT SIDE: 3D Model, Subparts Toggle, Commands */}
+              <div className="space-y-6">
+                <div className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-card to-background rounded-xl border border-border shadow-lg overflow-hidden flex items-center justify-center">
+                  {activeModel ? (
+                    <Suspense fallback={<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C17A45]"></div>}>
+                      <ThreeModelViewer modelUrl={`${import.meta.env.BASE_URL}models/${activeModel}`} />
+                    </Suspense>
+                  ) : caseStudy.image ? (
+                    <img
+                      src={caseStudy.image.startsWith('/') ? `${import.meta.env.BASE_URL}${caseStudy.image.slice(1)}` : caseStudy.image}
+                      alt={caseStudy.title}
+                      className="w-full h-full object-cover mix-blend-multiply"
+                    />
+                  ) : (
+                    <div className="text-center space-y-4">
+                      <div className="w-24 h-24 mx-auto bg-[#C17A45]/10 rounded-lg flex items-center justify-center border border-[#C17A45]/20">
+                        <Box className="w-12 h-12 text-[#C17A45]" />
+                      </div>
+                      <p className="text-foreground/60 text-sm font-medium">
+                        Interactive 3D CAD Viewer
+                      </p>
                     </div>
-                    <p className="text-foreground/60 text-sm font-medium">
-                      Interactive 3D CAD Viewer
-                    </p>
-                    <p className="text-foreground/40 text-xs">
-                      Rotate • Zoom • Pan • Explode View
-                    </p>
-                  </div>
+                  )}
+                </div>
+
+                {/* Subparts Toggle Button */}
+                {caseStudy.subparts && caseStudy.subparts.length > 0 && (
+                  <button
+                    onClick={handleToggleSubparts}
+                    className={`w-full py-4 px-6 rounded-xl border-2 font-bold transition-all flex items-center justify-center gap-3 ${
+                      showSubparts 
+                        ? "bg-[#C17A45] border-[#C17A45] text-white shadow-md hover:bg-[#B5651D]" 
+                        : "bg-card border-border text-foreground hover:border-[#C17A45] hover:text-[#C17A45]"
+                    }`}
+                  >
+                    <Layers className="w-5 h-5" />
+                    {showSubparts ? "Return to Full Details" : "View Subparts"}
+                  </button>
                 )}
 
-              {/* Viewer Controls */}
-              <div className="absolute bottom-4 right-4 flex gap-2">
-                <button className="p-2 bg-card border border-border rounded hover:border-[#C17A45] transition-colors">
-                  <RotateCcw className="w-4 h-4 text-foreground/60" />
-                </button>
-                <button className="p-2 bg-card border border-border rounded hover:border-[#C17A45] transition-colors">
-                  <Maximize2 className="w-4 h-4 text-foreground/60" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Content Grid */}
-        <section className="py-12 border-b border-border">
-          <div className="container grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Objectives */}
-            <div>
-              <h2 className="text-2xl font-bold text-foreground mb-6">
-                Objectives
-              </h2>
-              <ul className="space-y-3">
-                {(caseStudy.objectives || []).map((obj, idx) => (
-                  <li key={idx} className="flex gap-3 text-foreground/70">
-                    <span className="text-[#C17A45] font-bold mt-0.5">✓</span>
-                    <span>{obj}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Requirements */}
-            <div>
-              <h2 className="text-2xl font-bold text-foreground mb-6">
-                Requirements
-              </h2>
-              <ul className="space-y-3">
-                {(caseStudy.requirements || []).map((req, idx) => (
-                  <li key={idx} className="flex gap-3 text-foreground/70">
-                    <span className="text-[#C17A45] font-bold mt-0.5">→</span>
-                    <span>{req}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Solution */}
-        <section className="py-12 border-b border-border bg-card/30">
-          <div className="container">
-            <h2 className="text-2xl font-bold text-foreground mb-6">
-              Solution & Approach
-            </h2>
-            <p className="text-lg text-foreground/70 leading-relaxed mb-8">
-              {caseStudy.solution || "Solution details not available."}
-            </p>
-
-            {/* Constraints */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h3 className="text-sm font-semibold text-foreground/60 uppercase mb-4">
-                  Constraints
-                </h3>
-                <ul className="space-y-2">
-                  {(caseStudy.constraints || []).map((constraint, idx) => (
-                    <li key={idx} className="text-sm text-foreground/70">
-                      • {constraint}
-                    </li>
-                  ))}
-                </ul>
+                {/* Commands Used */}
+                <div className="bg-card/40 p-6 rounded-xl border border-border">
+                  <div className="flex items-center gap-3 mb-6">
+                    <Zap className="w-5 h-5 text-[#C17A45]" />
+                    <h2 className="text-xl font-bold text-foreground">
+                      Commands & Techniques
+                    </h2>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {(caseStudy.commands || []).map((cmd) => (
+                      <span
+                        key={cmd}
+                        className="px-3 py-1.5 bg-background border border-border rounded-lg text-sm font-medium text-foreground"
+                      >
+                        {cmd}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Metrics */}
-              <div>
-                <h3 className="text-sm font-semibold text-foreground/60 uppercase mb-4">
-                  Project Metrics
-                </h3>
-                <ul className="space-y-2">
-                  {(caseStudy.metrics || []).map((metric, idx) => (
-                    <li key={idx} className="text-sm text-foreground/70">
-                      • {metric}
-                    </li>
-                  ))}
-                </ul>
+              {/* RIGHT SIDE: Sliding Content Panel */}
+              <div className="relative min-h-[600px] overflow-hidden">
+                <AnimatePresence mode="wait">
+                  {!showSubparts ? (
+                    // Details Mode
+                    <motion.div
+                      key="details"
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -30 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-10"
+                    >
+                      {/* Objectives & Requirements */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                          <h2 className="text-2xl font-bold text-foreground mb-4">Objectives</h2>
+                          <ul className="space-y-2">
+                            {(caseStudy.objectives || []).map((obj, idx) => (
+                              <li key={idx} className="flex gap-3 text-foreground/80 text-sm">
+                                <span className="text-[#C17A45] font-bold mt-0.5">✓</span>
+                                <span>{obj}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-bold text-foreground mb-4">Requirements</h2>
+                          <ul className="space-y-2">
+                            {(caseStudy.requirements || []).map((req, idx) => (
+                              <li key={idx} className="flex gap-3 text-foreground/80 text-sm">
+                                <span className="text-[#C17A45] font-bold mt-0.5">→</span>
+                                <span>{req}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Solution */}
+                      <div className="bg-card/20 p-6 rounded-xl border border-border/50">
+                        <h2 className="text-2xl font-bold text-foreground mb-4">Solution & Approach</h2>
+                        <p className="text-foreground/80 leading-relaxed">
+                          {caseStudy.solution || "Solution details not available."}
+                        </p>
+                      </div>
+
+                      {/* Constraints & Metrics */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="bg-background p-5 rounded-xl border border-border">
+                          <h3 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-3">Constraints</h3>
+                          <ul className="space-y-2">
+                            {(caseStudy.constraints || []).map((constraint, idx) => (
+                              <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2">
+                                <span className="text-[#C17A45]">•</span> {constraint}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="bg-background p-5 rounded-xl border border-border">
+                          <h3 className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-3">Metrics</h3>
+                          <ul className="space-y-2">
+                            {(caseStudy.metrics || []).map((metric, idx) => (
+                              <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2">
+                                <span className="text-[#C17A45]">•</span> {metric}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Challenges & Lessons */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                          <h2 className="text-2xl font-bold text-foreground mb-4">Challenges</h2>
+                          <ul className="space-y-2">
+                            {(caseStudy.challenges || []).map((challenge, idx) => (
+                              <li key={idx} className="flex gap-3 text-foreground/80 text-sm">
+                                <span className="text-[#C17A45] font-bold">!</span>
+                                <span>{challenge}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-bold text-foreground mb-4">Lessons Learned</h2>
+                          <ul className="space-y-2">
+                            {(caseStudy.lessonsLearned || []).map((lesson, idx) => (
+                              <li key={idx} className="flex gap-3 text-foreground/80 text-sm">
+                                <span className="text-[#C17A45] font-bold">★</span>
+                                <span>{lesson}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    // Subparts Mode
+                    <motion.div
+                      key="subparts"
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 50 }}
+                      transition={{ duration: 0.4 }}
+                      className="space-y-4"
+                    >
+                      <div className="flex items-center gap-3 mb-8">
+                        <Layers className="w-8 h-8 text-[#C17A45]" />
+                        <h2 className="text-3xl font-bold text-foreground">Assembly Components</h2>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 gap-4">
+                        {/* Main Assembly Option */}
+                        <motion.button
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 }}
+                          onClick={() => setActiveModel(caseStudy?.modelFile || null)}
+                          className={`w-full text-left p-6 rounded-xl border-2 transition-all group flex items-center gap-6 ${
+                            activeModel === caseStudy.modelFile
+                              ? "bg-[#C17A45]/10 border-[#C17A45] shadow-md"
+                              : "bg-card border-border hover:border-[#C17A45]/50 hover:bg-card/80"
+                          }`}
+                        >
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center font-black text-xl transition-colors ${
+                            activeModel === caseStudy.modelFile ? "bg-[#C17A45] text-white" : "bg-background text-foreground/40 group-hover:text-[#C17A45]"
+                          }`}>
+                            <Box className="w-6 h-6" />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-foreground group-hover:text-[#C17A45] transition-colors">Full Assembly</h3>
+                            <p className="text-sm text-foreground/60 mt-1">View the complete model</p>
+                          </div>
+                        </motion.button>
+
+                        {/* Individual Subparts */}
+                        {caseStudy.subparts?.map((subpart, idx) => (
+                          <motion.button
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.15 + (idx * 0.05) }}
+                            key={subpart.id}
+                            onClick={() => setActiveModel(subpart.modelFile)}
+                            className={`w-full text-left p-6 rounded-xl border-2 transition-all group flex items-center gap-6 ${
+                              activeModel === subpart.modelFile
+                                ? "bg-[#C17A45]/10 border-[#C17A45] shadow-md"
+                                : "bg-card border-border hover:border-[#C17A45]/50 hover:bg-card/80"
+                            }`}
+                          >
+                            <div className={`w-12 h-12 rounded-full flex items-center justify-center font-black text-xl transition-colors ${
+                              activeModel === subpart.modelFile ? "bg-[#C17A45] text-white" : "bg-background text-foreground/40 group-hover:text-[#C17A45]"
+                            }`}>
+                              {idx + 1}
+                            </div>
+                            <div>
+                              <h3 className="text-xl font-bold text-foreground group-hover:text-[#C17A45] transition-colors">{subpart.name}</h3>
+                              <p className="text-sm text-foreground/60 mt-1 font-mono">File: {subpart.modelFile}</p>
+                            </div>
+                          </motion.button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Challenges & Lessons */}
-        <section className="py-12 border-b border-border">
-          <div className="container grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-2xl font-bold text-foreground mb-6">
-                Challenges
-              </h2>
-              <ul className="space-y-3">
-                {(caseStudy.challenges || []).map((challenge, idx) => (
-                  <li key={idx} className="flex gap-3 text-foreground/70">
-                    <span className="text-[#C17A45] font-bold">!</span>
-                    <span>{challenge}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-2xl font-bold text-foreground mb-6">
-                Lessons Learned
-              </h2>
-              <ul className="space-y-3">
-                {(caseStudy.lessonsLearned || []).map((lesson, idx) => (
-                  <li key={idx} className="flex gap-3 text-foreground/70">
-                    <span className="text-[#C17A45] font-bold">★</span>
-                    <span>{lesson}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Commands Used */}
-        <section className="py-12 border-b border-border bg-card/30">
-          <div className="container">
-            <div className="flex items-center gap-3 mb-6">
-              <Zap className="w-6 h-6 text-[#C17A45]" />
-              <h2 className="text-2xl font-bold text-foreground">
-                Commands & Techniques Used
-              </h2>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {(caseStudy.commands || []).map((cmd) => (
-                <span
-                  key={cmd}
-                  className="px-4 py-2 bg-background border border-border rounded-lg text-sm font-medium text-foreground hover:border-[#C17A45] transition-colors"
-                >
-                  {cmd}
-                </span>
-              ))}
             </div>
           </div>
         </section>
 
         {/* CTA */}
-        <section className="py-12">
+        <section className="py-20 bg-card/20">
           <div className="container text-center space-y-6">
-            <p className="text-foreground/60 text-lg">
-              Have a similar fixture or tolerance challenge?
+            <h3 className="text-3xl font-bold text-foreground">Have a similar fixture or tolerance challenge?</h3>
+            <p className="text-foreground/60 text-lg max-w-xl mx-auto">
+              Let's connect and discuss how my precision engineering workflows can optimize your manufacturing process.
             </p>
             <a
               href="/#contact"
-              className="inline-flex items-center gap-2 bg-[#C17A45] text-white font-semibold px-8 py-3 rounded-lg hover:bg-[#B5651D] transition-colors duration-200 shadow-md hover:shadow-lg"
+              className="inline-flex items-center gap-2 bg-[#C17A45] text-white font-bold px-8 py-4 rounded-xl hover:bg-[#B5651D] transition-colors duration-200 shadow-xl hover:shadow-2xl hover:-translate-y-1 transform"
             >
               Let's Discuss Your Project
             </a>
