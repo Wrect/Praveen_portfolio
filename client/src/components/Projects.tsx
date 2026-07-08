@@ -26,7 +26,7 @@ export default function Projects() {
       // Sequentially load 1.json, 2.json until a 404 is returned
       while (true) {
         try {
-          const res = await fetch(`/models/${i}.json`);
+          const res = await fetch(`${import.meta.env.BASE_URL}models/${i}.json`);
           if (!res.ok) break; // Stop loading if file doesn't exist
 
           // Vite SPA fallback returns index.html for missing files, which causes JSON parse errors.

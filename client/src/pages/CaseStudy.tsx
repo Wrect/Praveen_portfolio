@@ -33,7 +33,7 @@ export default function CaseStudy() {
   useEffect(() => {
     const fetchCaseStudy = async () => {
       try {
-        const res = await fetch(`/models/${caseStudyId}.json`);
+        const res = await fetch(`${import.meta.env.BASE_URL}models/${caseStudyId}.json`);
         if (!res.ok) {
           setError(true);
           return;
