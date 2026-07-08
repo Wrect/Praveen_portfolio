@@ -27,7 +27,7 @@ export default function Projects() {
       // Sequentially load 1.json, 2.json until a 404 is returned
       while (true) {
         try {
-          const res = await fetch(`${import.meta.env.BASE_URL}models/${i}.json`);
+          const res = await fetch(`${import.meta.env.BASE_URL}projects/${i}/json/${i}.json`);
           if (!res.ok) break; // Stop loading if file doesn't exist
 
           // Vite SPA fallback returns index.html for missing files, which causes JSON parse errors.
@@ -71,12 +71,13 @@ export default function Projects() {
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C17A45]"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory scroll-smooth" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <style>{`.hide-scrollbar::-webkit-scrollbar { display: none; }`}</style>
             {projects.map((project) => (
               <Link
                 href={`/case-study/${project.id}`}
                 key={project.id}
-                className="block group bg-card border border-border rounded-lg overflow-hidden hover:border-[#C17A45] hover:shadow-lg transition-all duration-300"
+                className="block group bg-card border border-border rounded-lg overflow-hidden hover:border-[#C17A45] hover:shadow-lg transition-all duration-300 min-w-[320px] md:min-w-[400px] flex-shrink-0 snap-start hide-scrollbar"
               >
                 {/* Placeholder or Rendered Image */}
                 <div className="relative h-48 bg-gradient-to-br from-[#C17A45]/20 to-[#4A5A6A]/20 flex items-center justify-center overflow-hidden">

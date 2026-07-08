@@ -47,7 +47,7 @@ export default function CaseStudy() {
   useEffect(() => {
     const fetchCaseStudy = async () => {
       try {
-        const res = await fetch(`${import.meta.env.BASE_URL}models/${caseStudyId}.json`);
+        const res = await fetch(`${import.meta.env.BASE_URL}projects/${caseStudyId}/json/${caseStudyId}.json`);
         if (!res.ok) {
           setError(true);
           return;
@@ -185,7 +185,7 @@ export default function CaseStudy() {
                 <div className="relative h-[500px] md:h-[600px] bg-gradient-to-br from-card to-background rounded-xl border border-border shadow-lg overflow-hidden flex items-center justify-center">
                   {activeModel ? (
                     <Suspense fallback={<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C17A45]"></div>}>
-                      <ThreeModelViewer modelUrl={`${import.meta.env.BASE_URL}models/${activeModel}`} />
+                      <ThreeModelViewer modelUrl={`${import.meta.env.BASE_URL}projects/${caseStudyId}/models/${activeModel}`} />
                     </Suspense>
                   ) : caseStudy.image ? (
                     <img

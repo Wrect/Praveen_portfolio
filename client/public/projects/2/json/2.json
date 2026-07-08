@@ -13,8 +13,8 @@
     "5 revisions",
     "100% accuracy"
   ],
-  "modelFile": "2.IGS",
-  "image": "/models/2_img.png",
+  "modelFile": "2.STL",
+  "image": "/projects/2/images/2_img.png",
   "objectives": [
     "Design CMM holding fixture",
     "Verify hole locations and surface profile",
@@ -42,5 +42,6 @@
     "Surface Design",
     "Generative Shape Design",
     "BOM Generation"
-  ]
+  ],
+  "subparts": []
 }

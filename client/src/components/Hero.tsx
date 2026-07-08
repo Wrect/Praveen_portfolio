@@ -151,7 +151,7 @@ export default function Hero() {
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#C17A45]"></div>
                 </div>
               }>
-                <ThreeModelViewer />
+                <ThreeModelViewer modelUrl={`${import.meta.env.BASE_URL}introduction_model/intro.STL`} />
               </Suspense>
             </div>
           </div>

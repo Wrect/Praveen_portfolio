@@ -14,7 +14,7 @@
     "Zero defects"
   ],
   "modelFile": "1.STL",
-  "image": "/models/1_img.png",
+  "image": "/projects/1/images/1_img.png",
   "objectives": [
     "Design high-precision welding fixture for chassis",
     "Achieve GD&T compliance under 0.1mm",
@@ -48,17 +48,17 @@
     {
       "id": "sub1",
       "name": "Base Fixture Frame",
-      "modelFile": "1.STL"
+      "modelFile": "1.1.STL"
     },
     {
       "id": "sub2",
       "name": "Pneumatic Clamping Unit",
-      "modelFile": "1.STL"
+      "modelFile": "1.2.STL"
     },
     {
       "id": "sub3",
       "name": "Locating Pins Assembly",
-      "modelFile": "1.STL"
+      "modelFile": "1.3.STL"
     }
   ]
 }

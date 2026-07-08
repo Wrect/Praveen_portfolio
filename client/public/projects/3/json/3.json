@@ -13,8 +13,8 @@
     "2 iterations",
     "Production ready"
   ],
-  "modelFile": "3.IGS",
-  "image": "/models/3_img.png",
+  "modelFile": "3.STL",
+  "image": "/projects/3/images/3_img.png",
   "objectives": [
     "Route hydraulic lines through tight engine bay",
     "Ensure zero-interference with moving parts",
@@ -42,5 +42,6 @@
     "Tubing Design",
     "Interference Check",
     "Parametric Modeling"
-  ]
+  ],
+  "subparts": []
 }
