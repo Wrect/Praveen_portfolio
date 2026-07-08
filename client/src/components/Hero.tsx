@@ -58,13 +58,20 @@ export default function Hero() {
           {/* Left: Text & CTAs */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <div className="inline-block px-3 py-1 mb-2 border border-[#C17A45]/30 bg-[#C17A45]/10 rounded-full">
-                <span className="text-sm font-bold tracking-widest text-[#C17A45] uppercase">Praveen Kashyap</span>
+              <div className="flex flex-col items-start gap-4">
+                <div className="w-32 h-40 md:w-40 md:h-48 rounded-xl overflow-hidden border-2 border-[#C17A45]/30 shadow-2xl relative">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10 pointer-events-none" />
+                  <img 
+                    src={`${import.meta.env.BASE_URL}profile.png`} 
+                    alt="Praveen Kashyap" 
+                    className="w-full h-full object-cover z-0 relative"
+                  />
+                </div>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight">
+                  Praveen <br className="hidden md:block"/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C17A45] to-[#E8A573]">Kashyap</span>
+                </h1>
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground leading-[1.1] tracking-tight">
-                Architecting <br className="hidden md:block"/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C17A45] to-[#E8A573]">Precision.</span>
-              </h1>
               <p className="text-xl text-foreground/70 font-light leading-relaxed max-w-lg border-l-2 border-[#C17A45]/50 pl-4 mt-6">
                 Engineering the future of automotive manufacturing through robust fixture design, 100% accurate GD&T modeling, and optimized production workflows.
               </p>
