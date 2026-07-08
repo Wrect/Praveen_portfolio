@@ -6,6 +6,23 @@ This guide will teach you exactly how to update your models, edit text, and mana
 
 ---
 
+## 🔗 Personal Links — Keep These Updated!
+
+These are hardcoded links inside the source code. **Whenever your profile URL changes, update them here.**
+
+| Link | Current Value | File to Edit |
+|------|--------------|--------------|
+| **LinkedIn Profile** | `https://linkedin.com/in/praveen-kashyap-323719251` | `client/src/components/Hero.tsx` and `client/src/components/Contact.tsx` |
+| **GitHub Profile** | `https://github.com/Wrect` | `client/src/components/Hero.tsx` and `client/src/components/Contact.tsx` |
+| **Email Address** | `sid143pk@gmail.com` | `client/src/components/Contact.tsx` |
+| **Phone Number** | `+91-9795264544` | `client/src/components/Contact.tsx` |
+| **Resume / CV** | `client/public/resume.pdf` | Replace the file at this path |
+| **Profile Photo** | `client/public/profile.png` | Replace the file at this path |
+
+> **Tip:** To find and replace a link globally, press `Ctrl+Shift+H` in VS Code and search for the old URL.
+
+---
+
 ## 📂 Data Architecture (Where things live)
 
 All of the data that powers the website (Images, JSON files, and 3D STL Models) lives inside the **`client/public/`** folder. The website dynamically reads from these folders to render everything.
@@ -126,3 +143,10 @@ If you ever want to change the text colors, background gradients, or global them
 `client/src/index.css`
 
 Inside the `:root` and `.dark` blocks, you will find CSS variables like `--primary: #C17A45;` which controls the copper/orange accent color across the entire website.
+
+The **default theme is dark**. To change the default back to light, open `client/src/App.tsx` and change `defaultTheme="dark"` to `defaultTheme="light"`.
+
+---
+
+## 📱 Mobile Support
+The website is fully responsive and works on mobile devices. The navigation bar collapses into a hamburger (☰) menu on small screens. All sections are optimized for mobile viewports.
